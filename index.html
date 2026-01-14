@@ -1,314 +1,298 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lampshade Wizard - Pro</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .signature-line {
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0) 0%, rgba(79, 70, 229, 0.1) 50%, rgba(79, 70, 229, 0) 100%);
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Lampshade Wizard - Pro&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.signature-line {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, rgba(79, 70, 229, 0) 0%, rgba(79, 70, 229, 0.1) 50%, rgba(79, 70, 229, 0) 100%);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-slate-50 min-h-screen flex flex-col antialiased"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root" class="flex-grow"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect } = React;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const translations = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>en: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>title: "LAMPSHADE WIZARD",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>subtitle: "Perfect patterns, magical results",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>bottomD: "BOTTOM DIAMETER",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>topD: "TOP DIAMETER",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>height: "HEIGHT",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seam: "SEAM ALLOWANCE",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>results: "Magical Results",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>slant: "SLANT HEIGHT",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>angle: "PATTERN ANGLE",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportSvg: "Export SVG",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportDxf: "Export DXF (CAD)",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preview: "Preview updates automatically",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>body: "BODY",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seamTag: "SEAM",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preparedBy: "Developed by Aysun",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>description: "Professional cone expansion tool"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tr: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>title: "ABAJUR SİHİRBAZI",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>subtitle: "Kusursuz kalıplar, sihirli sonuçlar",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>bottomD: "ALT ÇAP (dB)",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>topD: "ÜST ÇAP (dT)",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>height: "YÜKSEKLİK (h)",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seam: "DİKİŞ PAYI",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>results: "Sihirli Sonuçlar",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>slant: "YAN KENAR",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>angle: "AÇILIM AÇISI",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportSvg: "SVG İndir",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportDxf: "DXF (CAD) İndir",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preview: "Önizleme otomatik güncellenir",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>body: "GÖVDE",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seamTag: "PAY",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preparedBy: "Aysun tarafından hazırlanmıştır",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>description: "Profesyonel koni açılım aracı"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>es: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>title: "MAGO DE PANTALLAS",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>subtitle: "Patrones perfectos, resultados mágicos",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>bottomD: "DIÁMETRO INFERIOR",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>topD: "DIÁMETRO SUPERIOR",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>height: "ALTURA",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seam: "MARGEN DE COSTURA",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>results: "Resultados Mágicos",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>slant: "ALTURA INCLINADA",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>angle: "ÁNGULO DEL PATRÓN",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportSvg: "Exportar SVG",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>exportDxf: "Exportar DXF (CAD)",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preview: "La vista previa se actualiza sola",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>body: "CUERPO",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>seamTag: "MARGEN",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>preparedBy: "Desarrollado por Aysun",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>description: "Herramienta profesional de expansión"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function App() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [lang, setLang] = useState('tr');<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [dB, setDB] = useState(200);<span class="Apple-converted-space">   </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [dT, setDT] = useState(80); <span class="Apple-converted-space">   </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [h, setH] = useState(150);<span class="Apple-converted-space">     </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [allowance, setAllowance] = useState(10);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const [svgSize, setSvgSize] = useState(350);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const t = translations[lang];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>useEffect(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const updateSize = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const width = window.innerWidth;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>setSvgSize(width &lt; 500 ? width - 40 : 500);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>};</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateSize();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>window.addEventListener('resize', updateSize);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return () =&gt; window.removeEventListener('resize', updateSize);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}, []);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const compute = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const rB = Math.max(dB / 2.0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const rT = Math.max(dT / 2.0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const s = Math.hypot(h, rB - rT);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const diff = rB - rT;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const rOuter = Math.abs(diff) &lt; 0.001 ? 999999 : (s * rB) / diff;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const rInner = rOuter - s;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const angleDeg = (360.0 * rB) / rOuter;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return { rOuter, rInner, angleDeg, s };</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const vals = compute();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const margin = 40;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const totalEffWidth = vals.rOuter + (allowance || 0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const scale = (totalEffWidth &gt; 0) ? (svgSize / 2 - margin) / totalEffWidth : 1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const cx = svgSize / 2;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const cy = svgSize / 2;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const getPathData = (isDownload = false) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const { rOuter, rInner, angleDeg } = vals;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const sF = isDownload ? 1 : scale;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const center = isDownload ? 500 : cx;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const angleRad = (angleDeg * Math.PI) / 180.0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const largeArc = angleDeg &gt; 180 ? 1 : 0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const allow = parseFloat(allowance) || 0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const pt = (r, a) =&gt; ({</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>x: center + r * Math.cos(a) * sF,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>y: center + r * Math.sin(a) * sF</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const p1o = pt(rOuter, 0);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const p2o = pt(rOuter, angleRad);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const p2i = pt(rInner, angleRad);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const p1i = pt(rInner, 0);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const main = `M ${p1o.x} ${p1o.y} A ${rOuter*sF} ${rOuter*sF} 0 ${largeArc} 1 ${p2o.x} ${p2o.y} L ${p2i.x} ${p2i.y} A ${rInner*sF} ${rInner*sF} 0 ${largeArc} 0 ${p1i.x} ${p1i.y} Z`;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>let seam = "";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (allow &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const p1o_ext = { x: p1o.x, y: p1o.y - (allow * sF) };</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const p1i_ext = { x: p1i.x, y: p1i.y - (allow * sF) };</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>seam = `M ${p1o.x} ${p1o.y} L ${p1o_ext.x} ${p1o_ext.y} L ${p1i_ext.x} ${p1i_ext.y} L ${p1i.x} ${p1i.y} Z`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return { main, seam };</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const downloadSVG = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const paths = getPathData(true);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const svgStr = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;rect width="1000" height="1000" fill="white" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="${paths.main}" fill="none" stroke="#4f46e5" stroke-width="0.5" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>${paths.seam ? `&lt;path d="${paths.seam}" fill="none" stroke="#dc2626" stroke-width="0.5" /&gt;` : ''}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="20" y="940" font-family="Arial" font-size="14" font-weight="bold" fill="#4f46e5"&gt;${t.title}&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="20" y="960" font-family="Arial" font-size="10" fill="#666"&gt;${t.preparedBy}&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;text x="20" y="980" font-family="Arial" font-size="9" fill="#999"&gt;dB:${dB} dT:${dT} h:${h} | Seam:${allowance}mm&lt;/text&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/svg&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const blob = new Blob([svgStr], { type: 'image/svg+xml' });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const url = URL.createObjectURL(blob);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const link = document.createElement('a');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.href = url;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.download = `lampshade-${lang}.svg`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.click();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const downloadDXF = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const { rOuter, rInner, angleDeg } = vals;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const angleRad = (angleDeg * Math.PI) / 180.0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const allow = parseFloat(allowance) || 0;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>let dxf = `0\nSECTION\n2\nENTITIES\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nARC\n8\nLampshade_Body\n10\n0.0\n20\n0.0\n40\n${rOuter}\n50\n0.0\n51\n${angleDeg}\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nARC\n8\nLampshade_Body\n10\n0.0\n20\n0.0\n40\n${rInner}\n50\n0.0\n51\n${angleDeg}\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nLINE\n8\nLampshade_Body\n10\n${rInner}\n20\n0.0\n11\n${rOuter}\n21\n0.0\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nLINE\n8\nLampshade_Body\n10\n${rInner * Math.cos(angleRad)}\n20\n${rInner * Math.sin(angleRad)}\n11\n${rOuter * Math.cos(angleRad)}\n21\n${rOuter * Math.sin(angleRad)}\n`;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (allow &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rOuter}\n20\n0.0\n11\n${rOuter}\n21\n-${allow}\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rOuter}\n21\n-${allow}\n11\n${rInner}\n21\n-${allow}\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rInner}\n21\n-${allow}\n11\n${rInner}\n21\n0.0\n`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Signature in DXF</p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nTEXT\n8\nCredits\n10\n20\n20\n-40\n40\n5.0\n1\n${t.preparedBy.toUpperCase()}\n`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>dxf += `0\nENDSEC\n0\nEOF`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const blob = new Blob([dxf], { type: 'application/dxf' });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const url = URL.createObjectURL(blob);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const link = document.createElement('a');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.href = url;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.download = `lampshade-pattern.dxf`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>link.click();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const currentPaths = getPathData(false);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex flex-col min-h-screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;main className="p-4 md:p-8 max-w-6xl mx-auto flex-grow w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;header className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-center md:text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h1 className="text-2xl md:text-3xl font-black text-indigo-900 tracking-tighter"&gt;🪄 {t.title}&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p className="text-[10px] text-indigo-500 font-bold uppercase tracking-[0.2em] opacity-80"&gt;{t.subtitle}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                            </span></p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex justify-center gap-1 bg-white p-1 rounded-xl border border-indigo-100 shadow-sm self-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>{['en', 'tr', 'es'].map(l =&gt; (</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button key={l} onClick={() =&gt; setLang(l)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${lang === l ? 'bg-indigo-600 text-white shadow-md' : 'text-indigo-400 hover:bg-indigo-50'}`}&gt;{l.toUpperCase()}&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>))}</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/header&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                        </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid lg:grid-cols-3 gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white p-6 rounded-3xl border border-indigo-50 shadow-2xl shadow-indigo-500/5 space-y-6 order-2 lg:order-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>{[</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>{label: t.bottomD, val: dB, set: setDB},</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>{label: t.topD, val: dT, set: setDT},</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>{label: t.height, val: h, set: setH},</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>{label: t.seam, val: allowance, set: setAllowance}</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>].map((item, i) =&gt; (</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div key={i}&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="text-[9px] font-black text-slate-400 uppercase tracking-[0.15em] mb-1.5 block"&gt;{item.label}&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input type="number" inputMode="decimal" value={item.val}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                                   </span>onChange={e =&gt; item.set(Math.max(0, Number(e.target.value)))}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                                   </span>className="block w-full border border-slate-100 rounded-2xl p-4 bg-slate-50/50 focus:bg-white focus:ring-8 focus:ring-indigo-500/5 focus:border-indigo-400 outline-none transition-all font-bold text-slate-700 text-sm" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>))}</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex flex-col gap-3 pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onClick={downloadSVG} className="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 active:scale-[0.98] text-[10px] uppercase tracking-widest"&gt;{t.exportSvg}&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onClick={downloadDXF} className="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-black transition shadow-lg active:scale-[0.98] text-[10px] uppercase tracking-widest"&gt;{t.exportDxf}&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-3 pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h3 className="text-[9px] font-black text-indigo-300 uppercase tracking-widest text-center"&gt;{t.results}&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-2 gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[8px] text-indigo-400 font-black uppercase block mb-1"&gt;{t.slant}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="font-black text-indigo-900 text-lg"&gt;{vals.s.toFixed(1)}&lt;small className="text-[10px] ml-0.5"&gt;mm&lt;/small&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-[8px] text-indigo-400 font-black uppercase block mb-1"&gt;{t.angle}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="font-black text-indigo-900 text-lg"&gt;{vals.angleDeg.toFixed(1)}°&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="lg:col-span-2 bg-white rounded-3xl border border-indigo-50 flex flex-col items-center justify-center p-8 min-h-[400px] order-1 lg:order-2 overflow-hidden shadow-sm relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="absolute top-6 right-6 flex gap-4 text-[9px] font-black tracking-widest"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="flex items-center gap-2 text-indigo-600 underline decoration-indigo-200 underline-offset-4"&gt;{t.body}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="flex items-center gap-2 text-rose-600 underline decoration-rose-200 underline-offset-4"&gt;{t.seamTag}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg width={svgSize} height={svgSize} className="drop-shadow-2xl transition-all duration-700 ease-in-out"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path d={currentPaths.main} fill="rgba(79, 70, 229, 0.02)" stroke="#4f46e5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>{currentPaths.seam &amp;&amp; &lt;path d={currentPaths.seam} fill="rgba(225, 29, 72, 0.02)" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" strokeLinecap="round" /&gt;}</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;circle cx={cx} cy={cy} r="3" fill="#e2e8f0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p className="absolute bottom-6 text-[9px] text-slate-300 font-bold uppercase tracking-widest"&gt;{t.preview}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{/* PROFESYONEL İMZA BÖLÜMÜ (FOOTER) */}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;footer className="w-full bg-white border-t border-slate-100 pt-10 pb-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="max-w-6xl mx-auto px-6 flex flex-col items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="w-full h-px signature-line mb-8"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex flex-col md:flex-row justify-between w-full items-center gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="text-center md:text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-indigo-900 font-black text-sm tracking-tighter"&gt;🪄 {t.title}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p className="text-[10px] text-slate-400 font-medium mt-1 uppercase tracking-wider"&gt;{t.description}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex flex-col items-center md:items-end"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mb-1 opacity-60"&gt;Design &amp; Code&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-indigo-600 font-black text-xs uppercase tracking-[0.3em] bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>{t.preparedBy}</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="mt-8 text-[9px] text-slate-300 font-medium uppercase tracking-widest"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>© 2026 • Made with magic for creators</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;App /&gt;);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="bg-slate-50 min-h-screen flex flex-col antialiased">
+    <div id="root" class="flex-grow"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const translations = {
+            en: {
+                title: "LAMPSHADE WIZARD",
+                subtitle: "Perfect patterns, magical results",
+                bottomD: "BOTTOM DIAMETER",
+                topD: "TOP DIAMETER",
+                height: "HEIGHT",
+                seam: "SEAM ALLOWANCE",
+                results: "Magical Results",
+                slant: "SLANT HEIGHT",
+                angle: "PATTERN ANGLE",
+                exportSvg: "Export SVG",
+                exportDxf: "Export DXF (CAD)",
+                preview: "Preview updates automatically",
+                body: "BODY",
+                seamTag: "SEAM",
+                preparedBy: "Developed by Aysun",
+                description: "Professional cone expansion tool"
+            },
+            tr: {
+                title: "ABAJUR SİHİRBAZI",
+                subtitle: "Kusursuz kalıplar, sihirli sonuçlar",
+                bottomD: "ALT ÇAP (dB)",
+                topD: "ÜST ÇAP (dT)",
+                height: "YÜKSEKLİK (h)",
+                seam: "DİKİŞ PAYI",
+                results: "Sihirli Sonuçlar",
+                slant: "YAN KENAR",
+                angle: "AÇILIM AÇISI",
+                exportSvg: "SVG İndir",
+                exportDxf: "DXF (CAD) İndir",
+                preview: "Önizleme otomatik güncellenir",
+                body: "GÖVDE",
+                seamTag: "PAY",
+                preparedBy: "Aysun tarafından hazırlanmıştır",
+                description: "Profesyonel koni açılım aracı"
+            },
+            es: {
+                title: "MAGO DE PANTALLAS",
+                subtitle: "Patrones perfectos, resultados mágicos",
+                bottomD: "DIÁMETRO INFERIOR",
+                topD: "DIÁMETRO SUPERIOR",
+                height: "ALTURA",
+                seam: "MARGEN DE COSTURA",
+                results: "Resultados Mágicos",
+                slant: "ALTURA INCLINADA",
+                angle: "ÁNGULO DEL PATRÓN",
+                exportSvg: "Exportar SVG",
+                exportDxf: "Exportar DXF (CAD)",
+                preview: "La vista previa se actualiza sola",
+                body: "CUERPO",
+                seamTag: "MARGEN",
+                preparedBy: "Desarrollado por Aysun",
+                description: "Herramienta profesional de expansión"
+            }
+        };
+
+        function App() {
+            const [lang, setLang] = useState('tr'); 
+            const [dB, setDB] = useState(200);   
+            const [dT, setDT] = useState(80);    
+            const [h, setH] = useState(150);     
+            const [allowance, setAllowance] = useState(10);
+            const [svgSize, setSvgSize] = useState(350);
+
+            const t = translations[lang];
+
+            useEffect(() => {
+                const updateSize = () => {
+                    const width = window.innerWidth;
+                    setSvgSize(width < 500 ? width - 40 : 500);
+                };
+                updateSize();
+                window.addEventListener('resize', updateSize);
+                return () => window.removeEventListener('resize', updateSize);
+            }, []);
+
+            const compute = () => {
+                const rB = Math.max(dB / 2.0, 0.1);
+                const rT = Math.max(dT / 2.0, 0.1);
+                const s = Math.hypot(h, rB - rT);
+                const diff = rB - rT;
+                const rOuter = Math.abs(diff) < 0.001 ? 999999 : (s * rB) / diff;
+                const rInner = rOuter - s;
+                const angleDeg = (360.0 * rB) / rOuter;
+                return { rOuter, rInner, angleDeg, s };
+            };
+
+            const vals = compute();
+            const margin = 40;
+            const totalEffWidth = vals.rOuter + (allowance || 0);
+            const scale = (totalEffWidth > 0) ? (svgSize / 2 - margin) / totalEffWidth : 1;
+            const cx = svgSize / 2;
+            const cy = svgSize / 2;
+
+            const getPathData = (isDownload = false) => {
+                const { rOuter, rInner, angleDeg } = vals;
+                const sF = isDownload ? 1 : scale;
+                const center = isDownload ? 500 : cx;
+                const angleRad = (angleDeg * Math.PI) / 180.0;
+                const largeArc = angleDeg > 180 ? 1 : 0;
+                const allow = parseFloat(allowance) || 0;
+
+                const pt = (r, a) => ({
+                    x: center + r * Math.cos(a) * sF,
+                    y: center + r * Math.sin(a) * sF
+                });
+
+                const p1o = pt(rOuter, 0);
+                const p2o = pt(rOuter, angleRad);
+                const p2i = pt(rInner, angleRad);
+                const p1i = pt(rInner, 0);
+
+                const main = `M ${p1o.x} ${p1o.y} A ${rOuter*sF} ${rOuter*sF} 0 ${largeArc} 1 ${p2o.x} ${p2o.y} L ${p2i.x} ${p2i.y} A ${rInner*sF} ${rInner*sF} 0 ${largeArc} 0 ${p1i.x} ${p1i.y} Z`;
+                
+                let seam = "";
+                if (allow > 0) {
+                    const p1o_ext = { x: p1o.x, y: p1o.y - (allow * sF) };
+                    const p1i_ext = { x: p1i.x, y: p1i.y - (allow * sF) };
+                    seam = `M ${p1o.x} ${p1o.y} L ${p1o_ext.x} ${p1o_ext.y} L ${p1i_ext.x} ${p1i_ext.y} L ${p1i.x} ${p1i.y} Z`;
+                }
+                return { main, seam };
+            };
+
+            const downloadSVG = () => {
+                const paths = getPathData(true);
+                const svgStr = `
+                    <svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="1000" height="1000" fill="white" />
+                        <path d="${paths.main}" fill="none" stroke="#4f46e5" stroke-width="0.5" />
+                        ${paths.seam ? `<path d="${paths.seam}" fill="none" stroke="#dc2626" stroke-width="0.5" />` : ''}
+                        <text x="20" y="940" font-family="Arial" font-size="14" font-weight="bold" fill="#4f46e5">${t.title}</text>
+                        <text x="20" y="960" font-family="Arial" font-size="10" fill="#666">${t.preparedBy}</text>
+                        <text x="20" y="980" font-family="Arial" font-size="9" fill="#999">dB:${dB} dT:${dT} h:${h} | Seam:${allowance}mm</text>
+                    </svg>`;
+                const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `lampshade-${lang}.svg`;
+                link.click();
+            };
+
+            const downloadDXF = () => {
+                const { rOuter, rInner, angleDeg } = vals;
+                const angleRad = (angleDeg * Math.PI) / 180.0;
+                const allow = parseFloat(allowance) || 0;
+                
+                let dxf = `0\nSECTION\n2\nENTITIES\n`;
+                dxf += `0\nARC\n8\nLampshade_Body\n10\n0.0\n20\n0.0\n40\n${rOuter}\n50\n0.0\n51\n${angleDeg}\n`;
+                dxf += `0\nARC\n8\nLampshade_Body\n10\n0.0\n20\n0.0\n40\n${rInner}\n50\n0.0\n51\n${angleDeg}\n`;
+                dxf += `0\nLINE\n8\nLampshade_Body\n10\n${rInner}\n20\n0.0\n11\n${rOuter}\n21\n0.0\n`;
+                dxf += `0\nLINE\n8\nLampshade_Body\n10\n${rInner * Math.cos(angleRad)}\n20\n${rInner * Math.sin(angleRad)}\n11\n${rOuter * Math.cos(angleRad)}\n21\n${rOuter * Math.sin(angleRad)}\n`;
+                
+                if (allow > 0) {
+                    dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rOuter}\n20\n0.0\n11\n${rOuter}\n21\n-${allow}\n`;
+                    dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rOuter}\n21\n-${allow}\n11\n${rInner}\n21\n-${allow}\n`;
+                    dxf += `0\nLINE\n8\nSeam_Allowance\n10\n${rInner}\n21\n-${allow}\n11\n${rInner}\n21\n0.0\n`;
+                }
+                // Signature in DXF
+                dxf += `0\nTEXT\n8\nCredits\n10\n20\n20\n-40\n40\n5.0\n1\n${t.preparedBy.toUpperCase()}\n`;
+
+                dxf += `0\nENDSEC\n0\nEOF`;
+                const blob = new Blob([dxf], { type: 'application/dxf' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `lampshade-pattern.dxf`;
+                link.click();
+            };
+
+            const currentPaths = getPathData(false);
+
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <main className="p-4 md:p-8 max-w-6xl mx-auto flex-grow w-full">
+                        <header className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div className="text-center md:text-left">
+                                <h1 className="text-2xl md:text-3xl font-black text-indigo-900 tracking-tighter">🪄 {t.title}</h1>
+                                <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-[0.2em] opacity-80">{t.subtitle}</p>
+                            </div>
+                            
+                            <div className="flex justify-center gap-1 bg-white p-1 rounded-xl border border-indigo-100 shadow-sm self-center">
+                                {['en', 'tr', 'es'].map(l => (
+                                    <button key={l} onClick={() => setLang(l)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${lang === l ? 'bg-indigo-600 text-white shadow-md' : 'text-indigo-400 hover:bg-indigo-50'}`}>{l.toUpperCase()}</button>
+                                ))}
+                            </div>
+                        </header>
+                        
+                        <div className="grid lg:grid-cols-3 gap-6">
+                            <div className="bg-white p-6 rounded-3xl border border-indigo-50 shadow-2xl shadow-indigo-500/5 space-y-6 order-2 lg:order-1">
+                                <div className="space-y-4">
+                                    {[
+                                        {label: t.bottomD, val: dB, set: setDB},
+                                        {label: t.topD, val: dT, set: setDT},
+                                        {label: t.height, val: h, set: setH},
+                                        {label: t.seam, val: allowance, set: setAllowance}
+                                    ].map((item, i) => (
+                                        <div key={i}>
+                                            <label className="text-[9px] font-black text-slate-400 uppercase tracking-[0.15em] mb-1.5 block">{item.label}</label>
+                                            <input type="number" inputMode="decimal" value={item.val} 
+                                                   onChange={e => item.set(Math.max(0, Number(e.target.value)))} 
+                                                   className="block w-full border border-slate-100 rounded-2xl p-4 bg-slate-50/50 focus:bg-white focus:ring-8 focus:ring-indigo-500/5 focus:border-indigo-400 outline-none transition-all font-bold text-slate-700 text-sm" />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="flex flex-col gap-3 pt-2">
+                                    <button onClick={downloadSVG} className="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 active:scale-[0.98] text-[10px] uppercase tracking-widest">{t.exportSvg}</button>
+                                    <button onClick={downloadDXF} className="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-black transition shadow-lg active:scale-[0.98] text-[10px] uppercase tracking-widest">{t.exportDxf}</button>
+                                </div>
+
+                                <div className="space-y-3 pt-2">
+                                    <h3 className="text-[9px] font-black text-indigo-300 uppercase tracking-widest text-center">{t.results}</h3>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50 text-center">
+                                            <span className="text-[8px] text-indigo-400 font-black uppercase block mb-1">{t.slant}</span>
+                                            <span className="font-black text-indigo-900 text-lg">{vals.s.toFixed(1)}<small className="text-[10px] ml-0.5">mm</small></span>
+                                        </div>
+                                        <div className="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50 text-center">
+                                            <span className="text-[8px] text-indigo-400 font-black uppercase block mb-1">{t.angle}</span>
+                                            <span className="font-black text-indigo-900 text-lg">{vals.angleDeg.toFixed(1)}°</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="lg:col-span-2 bg-white rounded-3xl border border-indigo-50 flex flex-col items-center justify-center p-8 min-h-[400px] order-1 lg:order-2 overflow-hidden shadow-sm relative">
+                                <div className="absolute top-6 right-6 flex gap-4 text-[9px] font-black tracking-widest">
+                                    <span className="flex items-center gap-2 text-indigo-600 underline decoration-indigo-200 underline-offset-4">{t.body}</span>
+                                    <span className="flex items-center gap-2 text-rose-600 underline decoration-rose-200 underline-offset-4">{t.seamTag}</span>
+                                </div>
+                                
+                                <svg width={svgSize} height={svgSize} className="drop-shadow-2xl transition-all duration-700 ease-in-out">
+                                    <path d={currentPaths.main} fill="rgba(79, 70, 229, 0.02)" stroke="#4f46e5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    {currentPaths.seam && <path d={currentPaths.seam} fill="rgba(225, 29, 72, 0.02)" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" strokeLinecap="round" />}
+                                    <circle cx={cx} cy={cy} r="3" fill="#e2e8f0" />
+                                </svg>
+                                
+                                <p className="absolute bottom-6 text-[9px] text-slate-300 font-bold uppercase tracking-widest">{t.preview}</p>
+                            </div>
+                        </div>
+                    </main>
+
+                    {/* PROFESYONEL İMZA BÖLÜMÜ (FOOTER) */}
+                    <footer className="w-full bg-white border-t border-slate-100 pt-10 pb-12">
+                        <div className="max-w-6xl mx-auto px-6 flex flex-col items-center">
+                            <div className="w-full h-px signature-line mb-8"></div>
+                            <div className="flex flex-col md:flex-row justify-between w-full items-center gap-6">
+                                <div className="text-center md:text-left">
+                                    <span className="text-indigo-900 font-black text-sm tracking-tighter">🪄 {t.title}</span>
+                                    <p className="text-[10px] text-slate-400 font-medium mt-1 uppercase tracking-wider">{t.description}</p>
+                                </div>
+                                
+                                <div className="flex flex-col items-center md:items-end">
+                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mb-1 opacity-60">Design & Code</span>
+                                    <span className="text-indigo-600 font-black text-xs uppercase tracking-[0.3em] bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 shadow-sm">
+                                        {t.preparedBy}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="mt-8 text-[9px] text-slate-300 font-medium uppercase tracking-widest">
+                                © 2026 • Made with magic for creators
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
